@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ItemCard from "./ItemCard";
 import Grid from "@mui/material/Grid";
-export default function ItemList() {
+
+export default function ItemList(props) {
   const [items, setItems] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,7 +28,7 @@ export default function ItemList() {
   }, []);
 
   return (
-    <div style={{ margin: "5px" }}>
+    <div style={{ padding: "100px 10px 0" }}>
       {loading ? (
         <div style={{ fontSize: "36px", textAlign: "center" }}>Loading...</div>
       ) : (
@@ -37,8 +38,8 @@ export default function ItemList() {
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
           {items.map((i) => (
-            <Grid item xs={2} sm={4} md={4} key={i}>
-              <ItemCard item={i} />
+            <Grid item xs={2} sm={4} md={4} key={i.id}>
+                <ItemCard addItems={props.addItems} item={i} />             
             </Grid>
           ))}
         </Grid>

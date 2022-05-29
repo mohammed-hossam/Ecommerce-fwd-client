@@ -12,15 +12,19 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
+
 
 const pages = ["Products"];
-const settings = ["Profile",  "Logout"];
+const settings = ["Profile", "Logout"];
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = (props) => {
   const [isAuth, setIsAuth] = useState(true);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-
+  const count = props.items.length;
+  const items = props.items;
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -40,7 +44,7 @@ const ResponsiveAppBar = () => {
       case "Logout":
         setIsAuth(false);
         break;
-        default:
+      default:
         break;
     }
   };
@@ -102,6 +106,7 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
+
           <Typography
             variant="h5"
             noWrap
@@ -131,15 +136,18 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           </Box>
-
+          <SearchBar />
           <Box>
-            <IconButton
-              color="inherit"
-              size="large"
-              aria-label="add to shopping cart"
-            >
-              <AddShoppingCartIcon />
-            </IconButton>
+            <Link to="/cart">
+              <IconButton
+                style={{ color: "white" }}
+                aria-label="add to shopping cart"
+                title="Cart"
+              >
+                <AddShoppingCartIcon />
+                <span>{`${count === 0 ? "" : count}`}</span>
+              </IconButton>
+            </Link>
           </Box>
 
           {isAuth ? (
@@ -166,14 +174,17 @@ const ResponsiveAppBar = () => {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={()=>handleCloseUserMenu(setting)}>
+                  <MenuItem
+                    key={setting}
+                    onClick={() => handleCloseUserMenu(setting)}
+                  >
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
             </Box>
           ) : (
-            <MenuItem onClick={()=>setIsAuth(true)}>Log In</MenuItem>
+            <MenuItem onClick={() => setIsAuth(true)}>Log In</MenuItem>
           )}
         </Toolbar>
       </Container>
@@ -181,3 +192,15 @@ const ResponsiveAppBar = () => {
   );
 };
 export default ResponsiveAppBar;
+/*
+<Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
+
+*/
