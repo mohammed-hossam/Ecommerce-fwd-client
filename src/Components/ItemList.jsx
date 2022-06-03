@@ -1,6 +1,7 @@
+import { Box } from "@mui/system";
 import React, { useState, useEffect } from "react";
-import ItemCard from "./ItemCard";
-import Grid from "@mui/material/Grid";
+import CarouselComp from "./CarouselComp";
+import Spinner from "./Spinner";
 
 export default function ItemList(props) {
   const [items, setItems] = useState(null);
@@ -28,22 +29,15 @@ export default function ItemList(props) {
   }, []);
 
   return (
-    <div style={{ padding: "100px 10px 0" }}>
+    <>
       {loading ? (
-        <div style={{ fontSize: "36px", textAlign: "center" }}>Loading...</div>
+        <Spinner />
       ) : (
-        <Grid
-          container
-          spacing={{ xs: 2, md: 3 }}
-          columns={{ xs: 4, sm: 8, md: 12 }}
-        >
-          {items.map((i) => (
-            <Grid item xs={2} sm={4} md={4} key={i.id}>
-                <ItemCard addItems={props.addItems} item={i} />             
-            </Grid>
-          ))}
-        </Grid>
+        <div style={{ margin: "0 20px" }}>
+          <Box component="h3">Just arrive</Box>
+          <CarouselComp list={items} />
+        </div>
       )}
-    </div>
+    </>
   );
 }

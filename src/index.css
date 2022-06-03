@@ -8,3 +8,24 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.react-multi-carousel-track{
+  margin: 10px 0 !important;
+}
+
+.spinner{
+  margin: 20px auto;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  border: solid 5px #3d3dc3;
+  border-bottom: solid 5px transparent;
+  animation: spin .5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+

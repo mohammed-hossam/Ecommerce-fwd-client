@@ -1,7 +1,11 @@
 import './App.css';
+import React from 'react';
 import ResponsiveAppBar from './Components/ResponsiveAppBar';
 import ItemList from './Components/ItemList';
+import BottomPage from './Components/BottomPage';
+import Box from '@mui/material/Box';
 import { useState } from 'react';
+import BannerAds from './Components/BannerAds';
 
 function App() {
   const [items, setItems] = useState([])
@@ -11,10 +15,11 @@ function App() {
   }
   return (
     <div className="App">
-      <div style={{ position: 'fixed', width: '100vw', zIndex: '1000' }}>
-        <ResponsiveAppBar items={items} />
-      </div>
+      <ResponsiveAppBar items={items} />
+      <Box sx={{width: '100%',height:'150px',my:"10px"}}></Box>
+      <BannerAds/>
       <ItemList addItems={addItems} />
+      <BottomPage />
     </div>
   );
 }
