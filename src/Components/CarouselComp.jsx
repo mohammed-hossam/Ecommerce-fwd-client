@@ -1,11 +1,14 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Link } from "react-router-dom";
 import ItemCard from "./ItemCard";
 
 function CarouselComp(props) {
   const list = props.list || [];
 
+console.log(props);
+  
   const responsive = {
     desktop: {
       breakpoint: {
@@ -35,9 +38,7 @@ function CarouselComp(props) {
 
   return (
     <>
-      
       <Carousel
-       
         additionalTransfrom={0}
         arrows
         autoPlaySpeed={3000}
@@ -60,7 +61,9 @@ function CarouselComp(props) {
         swipeable
       >
         {list.map((item, i) => (
-          <ItemCard key={item.id} item={item} />
+          <Link to={`/item/:${item.id}`} key={item.id}>
+            <ItemCard item={item} />
+          </Link>
         ))}
       </Carousel>
     </>

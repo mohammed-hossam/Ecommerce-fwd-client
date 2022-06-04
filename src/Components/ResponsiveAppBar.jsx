@@ -10,11 +10,9 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import SearchBar from "./SearchBar";
-import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import Divider from "@mui/material/Divider";
-import ios from "../assets/apple-logo.svg";
-import android from "../assets/android-logo.svg";
 import CartCar from "./CartCar";
+import ContactUS from "./ContactUS";
 import { Stack } from "@mui/material";
 
 const pages = ["Products"];
@@ -60,13 +58,7 @@ function UpperAppBar() {
       sx={{ justifyContent: "space-between", pt: 2, px: 1 }}
     >
       <span style={{ alignSelf: "center" }}>Welcome to E-Shop</span>
-      <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-        <LocalPhoneIcon />
-        <span>Hotline 16789</span>
-        <span>Download app now</span>
-        <img src={ios} width={20} alt="ios" />
-        <img src={android} width={20} alt="android" />
-      </Stack>
+      <ContactUS />
 
       {isAuth ? (
         <Box sx={{ flexGrow: 0 }}>

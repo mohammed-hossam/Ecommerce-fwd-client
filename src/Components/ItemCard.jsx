@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -8,8 +8,14 @@ import Rating from "@mui/material/Rating";
 import { Button, Divider } from "@mui/material";
 
 export default function ItemCard(props) {
+  const [isAdded, setIsAdded] = useState(false);
   const item = props.item;
   const rate = item.rating.rate;
+
+  const handleAdd = () => {
+    setIsAdded(true);
+  };
+
 
   return (
     <Card raised={true} sx={{ maxWidth: 250, height: 1 }}>
@@ -39,9 +45,13 @@ export default function ItemCard(props) {
       <Divider />
 
       <CardActions  disableSpacing>
-        <Button variant="contained" size="medium" style={{borderRadius:'50px',margin:'0 auto'}}>
+        {isAdded ?
+        <div></div>
+        :(
+        <Button onClick={handleAdd} variant="contained" size="medium" style={{borderRadius:'50px',margin:'0 auto'}}>
           Add To Cart
         </Button>
+        )}
       </CardActions>
     </Card>
   );

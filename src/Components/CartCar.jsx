@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Divider, Menu, MenuItem, Stack } from "@mui/material";
+import { Button, Divider, Menu, Stack } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
 
@@ -52,7 +52,7 @@ const CartCar = () => {
             <Link to="/cart">View Cart</Link>
           </div>
           <Divider />
-          {cartItems.length == 0 ? (
+          {cartItems.length === 0 ? (
             "No items in cart"
           ) : (
             <>
@@ -63,7 +63,7 @@ const CartCar = () => {
                 >
                   <span>{item.name}</span>
                   <span> Qty :{item.Qty}</span>
-                  <span>{item.price}</span>
+                  <span>{item.price} LE</span>
                   <span
                     onClick={() => removeFromItemCard(item.id)}
                     style={{
@@ -80,7 +80,7 @@ const CartCar = () => {
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <span>Total</span>
                 <span>
-                  {cartItems.reduce((a, b) => a + b.price * b.Qty, 0)}
+                  {cartItems.reduce((a, b) => a + b.price * b.Qty, 0)} LE
                 </span>
               </div>
               <Divider />
