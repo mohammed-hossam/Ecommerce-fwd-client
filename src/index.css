@@ -7,7 +7,48 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+    .react-multi-carousel-track{
+  margin: 10px 0 !important;
+}
+
+.spinner{
+  margin: 20px auto;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  border: solid 5px #3d3dc3;
+  border-bottom: solid 5px transparent;
+  animation: spin .5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+a{
+  text-decoration: none ;
+  color: #222;
+}
+
+footer{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-evenly;
+  align-items: center;
+  height: 100px;
+  background-color: #1976D2;
+  color: white;
+  padding: 10px;
+}
+
+footer a{
+  color: white !important;
+  font-weight: bold;
+  font-size: 20px;
+}
+
