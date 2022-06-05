@@ -36,7 +36,7 @@ console.log(props);
   };
 
   return (
-    <>
+    <div style={{padding:"0 20px"}}>
       <Carousel
         additionalTransfrom={0}
         arrows
@@ -63,7 +63,7 @@ console.log(props);
             <ItemCard key={item.id} item={item} />     
         ))}
       </Carousel>
-    </>
+    </div>
   );
 }
 export default CarouselComp;

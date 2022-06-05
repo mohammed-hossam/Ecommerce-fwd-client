@@ -6,7 +6,7 @@ import {Link} from "react-router-dom"
 const FooterPage = () => {
   return (
     <footer>
-      <div>E-shop</div>
+      <h2>E-shop</h2>
           <Link to="/aboutus">
              About Us
           </Link>
