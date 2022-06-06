@@ -7,7 +7,6 @@ import CarouselComp from "../Components/CarouselComp";
 
 const ItemPage = () => {
   const id = useParams().id.substring(1);
-  console.log(id);
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

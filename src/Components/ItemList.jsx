@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import CarouselComp from "./CarouselComp";
 import Spinner from "./Spinner";
 
-export default function ItemList(props) {
+export default function ItemList() {
   const [items, setItems] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -32,8 +32,10 @@ export default function ItemList(props) {
     <>
       {loading ? (
         <Spinner />
+      ) : error ? (
+        <div>{error.message}</div>
       ) : (
-        <div style={{ margin: "0 20px",padding:"0 0 10px" }}>
+        <div style={{ margin: "0 20px", padding: "0 0 10px" }}>
           <Box component="h3">Just arrive</Box>
           <CarouselComp list={items} />
         </div>

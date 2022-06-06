@@ -1,21 +1,31 @@
+import React from "react";
 import { Button, Stack } from "@mui/material";
-import React, { useState } from "react";
+import { updateQty } from "../Store/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 
-const QtyComponents = () => {
-  const [qty, setQty] = useState(1);
+const QtyComponents = (props) => {
+  const { id } = props;
+  const dispatch = useDispatch();
+  const item =
+    useSelector((state) => state.cart.find((item) => item.id === id)) ;
+
+  const qty = item === undefined ? 0 : item.qty;
 
   const handleQty = (op) => {
-    op === "+" ? setQty(qty + 1) : qty !== 1 ? setQty(qty - 1) : setQty(1);
+
+    dispatch(updateQty({ id: id, op: op }));
   };
 
   return (
-    <Stack margin={"0 auto"} direction={"row"}>
+    <Stack className="qty-comp" margin={"0 auto"} direction={"row"}>
       <Button
         onClick={() => {
           handleQty("-");
         }}
       >
-        -
+        <RemoveRoundedIcon />
       </Button>
       <span>{qty}</span>
       <Button
@@ -23,7 +33,7 @@ const QtyComponents = () => {
           handleQty("+");
         }}
       >
-        +
+        <AddRoundedIcon />
       </Button>
     </Stack>
   );
