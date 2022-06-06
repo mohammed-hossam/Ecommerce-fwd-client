@@ -6,8 +6,6 @@ import ItemCard from "./ItemCard";
 function CarouselComp(props) {
   const list = props.list || [];
 
-console.log(props);
-  
   const responsive = {
     desktop: {
       breakpoint: {

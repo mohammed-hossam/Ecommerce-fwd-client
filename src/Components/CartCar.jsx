@@ -1,28 +1,27 @@
 import React, { useState } from "react";
+import { useSelector,useDispatch } from "react-redux";
 import { Button, Divider, Menu, Stack } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import { Link } from "react-router-dom";
-
-const itemsCart = [
-  { id: 1, name: "Item 1", price: 30, Qty: 1 },
-  { id: 2, name: "Item 2", price: 60, Qty: 2 },
-];
+import { removeItem } from "../Store/cartSlice";
 
 const CartCar = () => {
+  const cartItems = useSelector((state) => state.cart) || [];
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [cartItems, setItemscart] = useState(itemsCart);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const removeFromItemCard = (id) => {
-    setItemscart(cartItems.filter((item) => item.id !== id));
+  const removeFromItemCard = (item) => {
+    dispatch(removeItem(item));
   };
 
   return (
@@ -50,7 +49,7 @@ const CartCar = () => {
       >
         <Stack spacing={1} sx={{ width: "250px", padding: "5px 15px" }}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span>{cartItems.reduce((a, b) => a + b.Qty, 0)} Item</span>
+            <span>{cartItems.reduce((a, b) => a + b.qty, 0)} Item</span>
             <Link to="/cart">View Cart</Link>
           </div>
           <Divider />
@@ -63,11 +62,11 @@ const CartCar = () => {
                   style={{ display: "flex", justifyContent: "space-between" }}
                   key={item.id}
                 >
-                  <span>{item.name}</span>
-                  <span> Qty :{item.Qty}</span>
+                  <span>{item.name.slice(0,15)}</span>
+                  <span> Qty :{item.qty}</span>
                   <span>{item.price} LE</span>
                   <span
-                    onClick={() => removeFromItemCard(item.id)}
+                    onClick={() => removeFromItemCard(item)}
                     style={{
                       color: "red",
                       fontWeight: "bolder",
@@ -82,7 +81,7 @@ const CartCar = () => {
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <span>Total</span>
                 <span>
-                  {cartItems.reduce((a, b) => a + b.price * b.Qty, 0)} LE
+                  {cartItems.reduce((a, b) => a + b.price * b.qty, 0)} LE
                 </span>
               </div>
               <Divider />

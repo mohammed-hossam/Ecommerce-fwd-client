@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -8,14 +8,23 @@ import Rating from "@mui/material/Rating";
 import { Button, Divider } from "@mui/material";
 import QtyComponents from "./QtyComponents";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addItem } from "../Store/cartSlice";
+import { useSelector } from "react-redux";
 
 export default function ItemCard(props) {
-  const [isAdded, setIsAdded] = useState(false);
+
+  const isAdded = useSelector((state) =>
+    state.cart.find((item) => item.id === props.item.id)
+  );
+
+  const dispatch = useDispatch();
   const item = props.item;
   const rate = item.rating.rate;
 
   const handleAdd = () => {
-    setIsAdded(true);
+    item.qty = 1;
+    dispatch(addItem(item));
   };
 
   return (
@@ -47,9 +56,9 @@ export default function ItemCard(props) {
       </Link>
       <Divider />
 
-      <CardActions disableSpacing sx={{padding:2}}>
+      <CardActions disableSpacing sx={{ padding: 2 }}>
         {isAdded ? (
-          <QtyComponents />
+          <QtyComponents id={item.id}/>
         ) : (
           <Button
             onClick={handleAdd}
@@ -61,7 +70,6 @@ export default function ItemCard(props) {
           </Button>
         )}
       </CardActions>
-
     </Card>
   );
 }
