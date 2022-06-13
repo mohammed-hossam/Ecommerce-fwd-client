@@ -107,12 +107,11 @@ tbody button {
   line-height: 1.8rem;
   text-align: justify;
 }
-.item span{
+.item span {
   font-weight: bold;
-  
 }
 
-.item div:last-of-type{
+.item div:last-of-type {
   font-size: 2rem;
   color: #1976d2;
   font-weight: bolder;
@@ -120,7 +119,41 @@ tbody button {
   text-align: center;
 }
 
-.item-image{
+.item-image {
   height: auto;
   margin: 10px auto;
+}
+
+#snakebar {
+  width: fit-content;
+  color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 0 9px 2px black;
+  font-weight: bold;
+  position: fixed;
+  bottom: 0px;
+  margin: 0 0 2rem 2rem;
+  transition: .5s;
+}
+
+.in {
+  opacity: 1;
+  left: 0;
+}
+
+.out {
+  left: -30%;
+  opacity: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+
+  margin: 2rem auto;
+  padding: 0 2rem 2rem ;
+  border-radius: 5px;
+  box-shadow: 0 0 4px 1px grey;
 }
