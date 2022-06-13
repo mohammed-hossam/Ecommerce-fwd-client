@@ -6,16 +6,18 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 
 const QtyComponents = (props) => {
-  const { id } = props;
+  const { id } = props.item;
+  const name = props.item.title || props.item.name;
+  
   const dispatch = useDispatch();
-  const item =
-    useSelector((state) => state.cart.find((item) => item.id === id)) ;
+  const item = useSelector((state) =>
+    state.cart.find((item) => item.id === id)
+  );
 
   const qty = item === undefined ? 0 : item.qty;
 
   const handleQty = (op) => {
-
-    dispatch(updateQty({ id: id, op: op }));
+    dispatch(updateQty({ id: id, name: name, op: op }));
   };
 
   return (

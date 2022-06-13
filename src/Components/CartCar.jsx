@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useSelector,useDispatch } from "react-redux";
-import { Button, Divider, Menu, Stack } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import { Badge, Button, Divider, Menu, Stack } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 import { Link } from "react-router-dom";
 import { removeItem } from "../Store/cartSlice";
 
@@ -34,7 +34,9 @@ const CartCar = () => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <ShoppingCartIcon style={{ fontSize: "1.5rem" }} />
+        <Badge badgeContent={cartItems.reduce((a, b) => a + b.qty, 0)} color="warning">
+          <ShoppingCartIcon style={{ fontSize: "1.5rem" }} />
+        </Badge>
         <span style={{ margin: "0 5px" }}>Shopping Cart</span>
         <ArrowDropDownRoundedIcon />
       </Button>
@@ -47,7 +49,7 @@ const CartCar = () => {
           "aria-labelledby": "basic-button",
         }}
       >
-        <Stack spacing={1} sx={{ width: "250px", padding: "5px 15px" }}>
+        <Stack spacing={1} sx={{ width: "300px", padding: "5px 15px" }}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <span>{cartItems.reduce((a, b) => a + b.qty, 0)} Item</span>
             <Link to="/cart">View Cart</Link>
@@ -62,7 +64,8 @@ const CartCar = () => {
                   style={{ display: "flex", justifyContent: "space-between" }}
                   key={item.id}
                 >
-                  <span>{item.name.slice(0,15)}</span>
+                  <span><img src={item.images[0]} width="20px" height="20px"></img></span>
+                  <span>{item.name.slice(0, 15)}</span>
                   <span> Qty :{item.qty}</span>
                   <span>{item.price} LE</span>
                   <span
@@ -81,7 +84,7 @@ const CartCar = () => {
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <span>Total</span>
                 <span>
-                  {cartItems.reduce((a, b) => a + b.price * b.qty, 0)} LE
+                  {cartItems.reduce((a, b) => a + b.price * b.qty, 0).toFixed(2)} LE
                 </span>
               </div>
               <Divider />

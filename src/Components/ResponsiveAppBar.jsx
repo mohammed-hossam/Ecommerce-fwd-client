@@ -15,18 +15,17 @@ import CartCar from "./CartCar";
 import ContactUS from "./ContactUS";
 import { Stack } from "@mui/material";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
+import { Link } from "react-router-dom";
 
 const pages = ["Products"];
 const settings = ["Profile", "Logout"];
 
-const ResponsiveAppBar = (props) => {
-  const count = props.items.length; 
-
+const ResponsiveAppBar = () => {
   return (
     <AppBar position="static">
       <Stack divider={<Divider />} spacing={0.5}>
         <UpperAppBar />
-        <BottomAppBar count={count} />
+        <BottomAppBar  />
       </Stack>
     </AppBar>
   );
@@ -34,7 +33,7 @@ const ResponsiveAppBar = (props) => {
 export default ResponsiveAppBar;
 
 function UpperAppBar() {
-  const [isAuth, setIsAuth] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -99,14 +98,14 @@ function UpperAppBar() {
           </Menu>
         </Box>
       ) : (
-        <MenuItem onClick={() => setIsAuth(true)}>Log In</MenuItem>
+        <MenuItem><Link to="/signin">Log In</Link></MenuItem>
       )}
     </Stack>
   );
 }
 
-function BottomAppBar(props) {
-  const count = props.count;
+function BottomAppBar() {
+  
   const [anchorElNav, setAnchorElNav] = useState(null);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -185,9 +184,7 @@ function BottomAppBar(props) {
           </Button>
         ))}
       </Box>
-
       <SearchBar />
-
       <Box>
         <CartCar />
       </Box>

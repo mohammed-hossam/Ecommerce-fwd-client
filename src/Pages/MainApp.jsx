@@ -6,19 +6,24 @@ import FooterPage from "../Components/FooterPage";
 import CartPage from "../Pages/CartPage";
 import ItemPage from "../Pages/ItemPage";
 import AboutUS from "../Pages/AboutUS";
-import App from "../App";
+import Main from "./Main";
+import SignInPage from "./SignInPage";
+
 
 const MainApp = () => {
+  
   return (
     <Router>
-      <ResponsiveAppBar items={[]} />
+      <ResponsiveAppBar />
       <Routes>
-        <Route exact path="/" element={<App />} />
+        <Route exact path="/" element={<Main />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/item/:id" element={<ItemPage />} />
         <Route path="/aboutus" element={<AboutUS />} />
+        <Route path="/signin" element={<SignInPage />} />
       </Routes>
       <FooterPage />
+      
     </Router>
   );
 };
