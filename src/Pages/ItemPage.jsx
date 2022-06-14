@@ -4,23 +4,20 @@ import { useParams } from "react-router-dom";
 import Item from "../Components/Item";
 import Spinner from "../Components/Spinner";
 import CarouselComp from "../Components/CarouselComp";
+import CustomerReview from "../Components/CustomerReview";
 
-const ItemPage = () => {
+const ItemPage = (props) => {
   
-  const itemId = useParams().id.substring(1);
-  console.log(itemId);
-  
-  const [id, setId] = useState(itemId);
+  const id = useParams().id.substring(1);
+
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [items, setItems] = useState(null);
   const [catLoading, setCatLoading] = useState(true);
 
-  console.log(id);
- 
   useEffect(() => {
-    setId(itemId);
+     
     console.log("useEffect");
     fetch(`https://fakestoreapi.com/products/${id}`)
       .then((res) => {
@@ -40,7 +37,7 @@ const ItemPage = () => {
         setLoading(false);
         setItem(null);
       });
-  }, [itemId]);
+  }, [id]);
 
   const fetchCategory = (category) => {
     fetch(`https://fakestoreapi.com/products/category/${category}`)
@@ -69,7 +66,10 @@ const ItemPage = () => {
       ) : error ? (
         <div>{error.message}</div>
       ) : (
+        <>
         <Item item={item} />
+        <CustomerReview />
+        </>
       )}
       {catLoading ? (
         <Spinner />
@@ -81,6 +81,7 @@ const ItemPage = () => {
           <CarouselComp list={items} />
         </>
       )}
+
     </Stack>
   );
 };
