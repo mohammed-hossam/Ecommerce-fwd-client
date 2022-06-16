@@ -6,7 +6,12 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 
 const QtyComponents = (props) => {
-  const { id } = props;
+
+  console.log(props.item);
+  const  id  = props.item._id || props.item.id;
+  const name = props.item.title || props.item.name;
+  
+
   const dispatch = useDispatch();
   const item =
     useSelector((state) => state.cart.find((item) => item.id === id)) ;

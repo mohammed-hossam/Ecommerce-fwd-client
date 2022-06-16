@@ -94,11 +94,9 @@ const Register = () => {
 
   const onChange = (e) => {
     const { id, value } = e.target;
-    console.log(id, value);
+    
     setInput((prevState) => ({ ...prevState, [id]: value }));
-    console.log(input);
-    console.log(isError);
-    console.log(errorMessage);
+    
   };
 
   useEffect(() => {

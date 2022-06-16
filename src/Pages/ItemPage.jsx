@@ -34,47 +34,77 @@ const ItemPage = () => {
 			});
 	}, []);
 
-	const fetchCategory = (category) => {
-		fetch(`https://fakestoreapi.com/products/category/${category}`)
-			.then((res) => {
-				if (!res.ok) {
-					throw new Error(`This is an HTTP error: The status is ${res.status}`);
-				}
-				return res.json();
-			})
-			.then((items) => {
-				setItems(items.filter((item) => item.id !== parseInt(id)));
-				setCatLoading(false);
-				setError(null);
-			})
-			.catch((err) => {
-				setError(err);
-				setCatLoading(false);
-				setItems(null);
-			});
-	};
+  useEffect(() => {
+     
+    console.log("useEffect");
+    fetch(`https://e-shop-udacity-13.herokuapp.com/product/${id}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`This is an HTTP error: The status is ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((item) => {
+        setItem(item);
+        setLoading(false);
+        setError(null);
+        fetchCategory(item.category);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+        setItem(null);
+        
+      });
+  }, [id]);
 
-	return (
-		<Stack>
-			{loading ? (
-				<Spinner />
-			) : error ? (
-				<div>{error.message}</div>
-			) : (
-				<Item item={item} />
-			)}
-			{catLoading ? (
-				<Spinner />
-			) : error ? (
-				<div>{error.message}</div>
-			) : (
-				<>
-					<h2 style={{ padding: '0 20px' }}>Related Products</h2>
-					<CarouselComp list={items} />
-				</>
-			)}
-		</Stack>
-	);
+  const fetchCategory = (category) => {
+    fetch(`https://e-shop-udacity-13.herokuapp.com/product/active?category=${category}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`This is an HTTP error: The status is ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((items) => {
+        setItems(items.filter((item) => item._id !== parseInt(id)));
+        setCatLoading(false);
+        setError(null);
+      })
+      .catch((err) => {
+        setError(err);
+        setCatLoading(false);
+        setItems(null);
+      });
+  };
+
+
+
+  return (
+    <Stack>
+      {loading ? (
+        <Spinner />
+      ) : error ? (
+        <div>{error.message}</div>
+      ) : (
+        <>
+        <Item item={item} />
+        <CustomerReview />
+        </>
+      )}
+      {catLoading ? (
+        <Spinner />
+      ) : error ? (
+        <div>{error.message}</div>
+      ) : (
+        <>
+          <h2 style={{ padding: "0 20px" }}>Related Products</h2>
+          <CarouselComp list={items} />
+        </>
+      )}
+
+    </Stack>
+  );
 };
 
 export default ItemPage;

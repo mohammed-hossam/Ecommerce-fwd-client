@@ -103,7 +103,7 @@ tbody button {
 
 .item {
   margin: 10px;
-  max-width: 70%;
+  width: 70%;
   line-height: 1.8rem;
   text-align: justify;
 }
@@ -120,7 +120,62 @@ tbody button {
   text-align: center;
 }
 
-.item-image{
+.item-image {
+  width: 30%;
   height: auto;
   margin: 10px auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  align-items: center;
+}
+
+.master-image {
+  order: 0;
+  flex: 1 1 100%;
+  align-self: center;
+  margin-bottom: 10px;
+}
+
+.child-image {
+  order: 0;
+  align-self: auto;
+  cursor: pointer;
+}
+
+
+#snakebar {
+  width: fit-content;
+  color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 0 9px 2px #33333399;
+  font-weight: bold;
+  position: fixed;
+  bottom: 0px;
+  margin: 0 0 2rem 2rem;
+  transition: 0.8s;
+}
+
+.in {
+  opacity: 1;
+  left: 0;
+}
+
+.out {
+  left: -30%;
+  opacity: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+
+  margin: 2rem auto;
+  padding: 0 2rem 2rem;
+  border-radius: 5px;
+  box-shadow: 0 0 4px 1px grey;
 }

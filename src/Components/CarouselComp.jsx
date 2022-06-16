@@ -58,7 +58,7 @@ function CarouselComp(props) {
         swipeable
       >
         {list.map((item, i) => (
-            <ItemCard key={item.id} item={item} />     
+            <ItemCard key={item._id} item={item} />     
         ))}
       </Carousel>
     </div>
