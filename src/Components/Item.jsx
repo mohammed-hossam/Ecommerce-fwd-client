@@ -13,7 +13,6 @@ const Item = (props) => {
   const handleAdd = () => {
     item.qty = 1;
     dispatch(addItem(item));
-    
   };
 
   return (
@@ -37,7 +36,7 @@ const Item = (props) => {
           {item.price} $
         </div>
         {isAdded ? (
-          <QtyComponents item={item}/>
+          <QtyComponents id={item.id} />
         ) : (
           <div>
             <Button

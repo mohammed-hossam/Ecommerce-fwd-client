@@ -13,6 +13,7 @@ import { addItem } from "../Store/cartSlice";
 import { useSelector } from "react-redux";
 
 export default function ItemCard(props) {
+
   const isAdded = useSelector((state) =>
     state.cart.find((item) => item.id === props.item.id)
   );
@@ -57,18 +58,16 @@ export default function ItemCard(props) {
 
       <CardActions disableSpacing sx={{ padding: 2 }}>
         {isAdded ? (
-          <QtyComponents item={item} />
+          <QtyComponents id={item.id}/>
         ) : (
-          <>
-            <Button
-              onClick={handleAdd}
-              variant="contained"
-              size="medium"
-              style={{ borderRadius: "50px", margin: "0 auto" }}
-            >
-              Add To Cart
-            </Button>
-          </>
+          <Button
+            onClick={handleAdd}
+            variant="contained"
+            size="medium"
+            style={{ borderRadius: "50px", margin: "0 auto" }}
+          >
+            Add To Cart
+          </Button>
         )}
       </CardActions>
     </Card>
@@ -85,15 +84,4 @@ category: string,
 description: string,
 rating: integer
 
-*/
-/*
- <Snackbar
-              open={isAdded}
-              autoHideDuration={6000}
-              anchorOrigin={{ vertical: "top", horizontal: "center" }}
-            >
-              <Alert severity="success" sx={{ width: "100%" }}>
-                {`${item.title} added to cart`}
-              </Alert>
-            </Snackbar>
 */
