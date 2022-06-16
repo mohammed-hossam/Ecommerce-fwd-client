@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import QtyComponents from "../Components/QtyComponents";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
+import { IMAGEPATH } from "../helper/const";
 
 const CartPage = () => {
   const itemsCart = useSelector((state) => state.cart) || [];
@@ -15,7 +16,7 @@ const CartPage = () => {
     dispatch(removeItem(item));
   };
 
-  console.log(itemsCart[0]);
+  console.log(itemsCart);
 
   return (
     <div style={{ width: "100%", height: "400px" }}>
@@ -49,7 +50,7 @@ const CartPage = () => {
                 <tr>
                   <td>
                     <img
-                      src={item.images[0]}
+                      src={`${IMAGEPATH}${item.images[0]}`}
                       alt={item.name}
                       width="50px"
                       height="50px"

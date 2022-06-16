@@ -5,6 +5,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 import { Link } from "react-router-dom";
 import { removeItem } from "../Store/cartSlice";
+import { IMAGEPATH } from "../helper/const";
 
 const CartCar = () => {
   const cartItems = useSelector((state) => state.cart) || [];
@@ -64,7 +65,7 @@ const CartCar = () => {
                   style={{ display: "flex", justifyContent: "space-between" }}
                   key={item.id}
                 >
-                  <span><img src={item.images[0]} width="20px" height="20px"></img></span>
+                  <span><img src={`${IMAGEPATH}${item.images[0]}`} width="20px" height="20px"></img></span>
                   <span>{item.name.slice(0, 15)}</span>
                   <span> Qty :{item.qty}</span>
                   <span>{item.price} LE</span>

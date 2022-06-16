@@ -3,17 +3,30 @@ import { Stack, Button } from "@mui/material";
 import QtyComponents from "./QtyComponents";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../Store/cartSlice";
+import { IMAGEPATH } from "../helper/const";
+import { useState } from "react";
 
 const Item = (props) => {
   const { item } = props;
+  const [images, setImages] = useState(item.images.filter((img) => img!==null));
+  console.log(images);
   const dispatch = useDispatch();
   const isAdded = useSelector((state) =>
-    state.cart.find((item) => item.id === props.item.id)
+    state.cart.find((item) => item.id === props.item._id)
   );
   const handleAdd = () => {
     item.qty = 1;
     dispatch(addItem(item));
-    
+  };
+
+  const handleImageClick = (imageIndex) => {
+    const fImage = images[imageIndex]
+    const newImages = images[0]
+     
+    setImages(images.filter((img) => img !== fImage && img !== newImages))
+    console.log(images);
+    setImages((pr)=>[...pr,fImage,newImages]);
+    console.log(images);
   };
 
   return (
@@ -30,14 +43,14 @@ const Item = (props) => {
         </div>
         <div>
           <span>Rate : </span>
-          {item.rating.rate}
+          {item.rating}
         </div>
         <div>
           <span>Price : </span>
           {item.price} $
         </div>
         {isAdded ? (
-          <QtyComponents item={item}/>
+          <QtyComponents item={item} />
         ) : (
           <div>
             <Button
@@ -53,11 +66,24 @@ const Item = (props) => {
       </div>
       <div className="item-image">
         <img
-          width={"200px"}
-          height={"300px"}
-          src={item.image}
-          alt={item.title}
+          className="master-image"
+          width={"100%"}
+          src={`${IMAGEPATH}${images[0]}`}
+          alt={item.name}
         />
+        {images
+          .filter((img) => img !== images[0])
+          .map((image, index) => (
+            <img
+              key={index}
+              className="child-image"
+              width={"50px"}
+              height={"50px"}
+              src={`${IMAGEPATH}${image}`}
+              alt={image}
+              onClick={() => handleImageClick(index)}
+            />
+          ))}
       </div>
     </Stack>
   );

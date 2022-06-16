@@ -19,7 +19,7 @@ const ItemPage = (props) => {
   useEffect(() => {
      
     console.log("useEffect");
-    fetch(`https://fakestoreapi.com/products/${id}`)
+    fetch(`https://e-shop-udacity-13.herokuapp.com/product/${id}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`This is an HTTP error: The status is ${res.status}`);
@@ -36,11 +36,12 @@ const ItemPage = (props) => {
         setError(err);
         setLoading(false);
         setItem(null);
+        
       });
   }, [id]);
 
   const fetchCategory = (category) => {
-    fetch(`https://fakestoreapi.com/products/category/${category}`)
+    fetch(`https://e-shop-udacity-13.herokuapp.com/product/active?category=${category}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`This is an HTTP error: The status is ${res.status}`);
@@ -48,7 +49,7 @@ const ItemPage = (props) => {
         return res.json();
       })
       .then((items) => {
-        setItems(items.filter((item) => item.id !== parseInt(id)));
+        setItems(items.filter((item) => item._id !== parseInt(id)));
         setCatLoading(false);
         setError(null);
       })
@@ -58,6 +59,8 @@ const ItemPage = (props) => {
         setItems(null);
       });
   };
+
+
 
   return (
     <Stack>

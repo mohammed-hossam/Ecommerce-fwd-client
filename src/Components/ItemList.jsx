@@ -9,7 +9,7 @@ export default function ItemList() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
+    fetch("https://e-shop-udacity-13.herokuapp.com/product/active")
       .then((res) => {
         if (!res.ok) {
           throw new Error(`This is an HTTP error: The status is ${res.status}`);

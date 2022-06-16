@@ -8,11 +8,11 @@ const cartSlice = createSlice({
             const item = action.payload;
             
             state.push({
-                id: item.id,
-                name: item.title,
+                id: item._id,
+                name: item.name,
                 price: item.price,
                 qty: item.qty,
-                images: [item.image]
+                images: [item.images[0]]
             });
 
         },
@@ -24,8 +24,9 @@ const cartSlice = createSlice({
             state = [];
         },
         updateQty: (state, action) => {
-            const { id, op } = action.payload;
-            const item = state.find(item => item.id === id);
+            const { id: _id, op } = action.payload;
+            console.log(_id, op);
+            const item = state.find(item => item.id === _id);
             item.qty = op === "+" ? item.qty + 1 : item.qty !== 1 ? item.qty - 1 : 1;
         }
     },

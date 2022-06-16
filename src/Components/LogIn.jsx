@@ -13,6 +13,11 @@ const LogIn = () => {
     password: false,
   });
 
+  const [isVisited, setIsVisited] = useState({  
+    name: false,
+    password: false,
+  });
+
   const [errorMessage, setErrorMessage] = useState({
     name: "",
     password: "",
@@ -22,6 +27,7 @@ const LogIn = () => {
     console.log("onSubmit");
     e.preventDefault();
     const { name, password } = e.target;
+    console.log(isValid);
      if (!isValid) return;
     dispatch(login({ username: name.value, password: password.value }));
   };
@@ -29,7 +35,7 @@ const LogIn = () => {
   const validate = () => {
     console.log("validate");
     const { name, password } = input;
-    if (name.trim() === "") {
+    if (name.trim() === "" && isVisited.name) {
       setErrorMessage((prevState) => ({
         ...prevState,
         name: "User Name is required",
@@ -40,13 +46,13 @@ const LogIn = () => {
       setIsError((prevState) => ({ ...prevState, name: false }));
     }
 
-    if (password.trim() === "") {
+    if (password.trim() === "" && isVisited.password) {
       setErrorMessage((prevState) => ({
         ...prevState,
         password: "Password is required",
       }));
       setIsError((prevState) => ({ ...prevState, password: true }));
-    } else if (password.length < 8) {
+    } else if (password.length < 8 && isVisited.password) {
       setErrorMessage((prevState) => ({
         ...prevState,
         password: "Password must be 8 characters or more",
@@ -65,6 +71,7 @@ const LogIn = () => {
     console.log("onChange");
     const { id, value } = e.target;
     setInput((prevState) => ({ ...prevState, [id]: value }));
+    setIsVisited((prevState) => ({ ...prevState, [id]: true }));
   };
 
   useEffect(() => {

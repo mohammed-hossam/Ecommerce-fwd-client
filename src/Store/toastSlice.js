@@ -13,7 +13,7 @@ const toastSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(addItem, (state, action) => {
-            state[0] = { message: `${action.payload.title} added to cart`, color: "#1e6a1e" };
+            state[0] = { message: `${action.payload.name} added to cart`, color: "#1e6a1e" };
         });
         builder.addCase(removeItem, (state, action) => {
             

@@ -11,16 +11,17 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../Store/cartSlice";
 import { useSelector } from "react-redux";
+import { IMAGEPATH } from "../helper/const";
 
 export default function ItemCard(props) {
   const isAdded = useSelector((state) =>
-    state.cart.find((item) => item.id === props.item.id)
+    state.cart.find((item) => item.id === props.item._id)
   );
 
   const dispatch = useDispatch();
   const item = props.item;
-  const rate = item.rating.rate;
-
+  const rate = item.rating;
+  
   const handleAdd = () => {
     item.qty = 1;
     dispatch(addItem(item));
@@ -28,11 +29,11 @@ export default function ItemCard(props) {
 
   return (
     <Card raised={true} sx={{ maxWidth: 250, height: 1 }}>
-      <Link to={`/item/:${item.id}`}>
+      <Link to={`/item/:${item._id}`}>
         <CardMedia
           component="img"
           height="194"
-          image={item.image}
+          image={`${IMAGEPATH}${item.images[0]}`}
           alt={item.name}
         />
         <CardContent>
@@ -40,9 +41,9 @@ export default function ItemCard(props) {
             {item.category}
           </Typography>
           <Typography fontSize={18} fontWeight={500}>
-            {item.title.length > 15
-              ? `${item.title.slice(0, 15)}...`
-              : item.title}
+            {item.name.length > 15
+              ? `${item.name.slice(0, 15)}...`
+              : item.name}
           </Typography>
           <Typography component="legend">
             <span style={{ verticalAlign: "top" }}>Rate :</span>{" "}
