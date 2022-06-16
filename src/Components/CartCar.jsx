@@ -7,23 +7,24 @@ import { Link } from "react-router-dom";
 import { removeItem } from "../Store/cartSlice";
 import { IMAGEPATH } from "../helper/const";
 
+
 const CartCar = () => {
-  const cartItems = useSelector((state) => state.cart) || [];
-  const dispatch = useDispatch();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
+	const cartItems = useSelector((state) => state.cart) || [];
+	const dispatch = useDispatch();
+	const [anchorEl, setAnchorEl] = useState(null);
+	const open = Boolean(anchorEl);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
 
-  const removeFromItemCard = (item) => {
-    dispatch(removeItem(item));
-  };
+	const removeFromItemCard = (item) => {
+		dispatch(removeItem(item));
+	};
 
   return (
     <div>
@@ -98,9 +99,4 @@ const CartCar = () => {
 };
 
 export default CartCar;
-/*
-<Button style={{ color: "white" }}>
-        <ShoppingCartIcon style={{ fontSize: "2rem" }} />
-        <span style={{ margin: "0 5px" }}>Shopping Cart</span>
-      </Button>
-*/
+

@@ -17,6 +17,7 @@ const Item = (props) => {
   const handleAdd = () => {
     item.qty = 1;
     dispatch(addItem(item));
+
   };
 
   const handleImageClick = (imageIndex) => {
@@ -27,7 +28,6 @@ const Item = (props) => {
     console.log(images);
     setImages((pr)=>[...pr,fImage,newImages]);
     console.log(images);
-  };
 
   return (
     <Stack margin={"10px"} direction={"row"}>
@@ -51,6 +51,7 @@ const Item = (props) => {
         </div>
         {isAdded ? (
           <QtyComponents item={item} />
+
         ) : (
           <div>
             <Button

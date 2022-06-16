@@ -107,11 +107,12 @@ tbody button {
   line-height: 1.8rem;
   text-align: justify;
 }
-.item span {
+.item span{
   font-weight: bold;
+  
 }
 
-.item div:last-of-type {
+.item div:last-of-type{
   font-size: 2rem;
   color: #1976d2;
   font-weight: bolder;

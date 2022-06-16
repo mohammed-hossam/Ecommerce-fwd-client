@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useSelector } from "react-redux";
 import { removeItem } from "../Store/cartSlice";
@@ -7,14 +8,11 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { IMAGEPATH } from "../helper/const";
 
-const CartPage = () => {
-  const itemsCart = useSelector((state) => state.cart) || [];
-  const total = itemsCart.reduce((a, b) => a + b.price * b.qty, 0).toFixed(2);
-  const dispatch = useDispatch();
 
-  const handleRemove = (item) => {
-    dispatch(removeItem(item));
-  };
+const CartPage = () => {
+	const itemsCart = useSelector((state) => state.cart) || [];
+
+	const dispatch = useDispatch();
 
   console.log(itemsCart);
 
