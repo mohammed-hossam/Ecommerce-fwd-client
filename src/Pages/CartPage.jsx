@@ -11,10 +11,14 @@ import { IMAGEPATH } from "../helper/const";
 
 const CartPage = () => {
 	const itemsCart = useSelector((state) => state.cart) || [];
+  const total = itemsCart.reduce((a, b) => a + b.price * b.qty, 0).toFixed(2);
 
 	const dispatch = useDispatch();
 
-  console.log(itemsCart);
+  const handleRemove = (item) => {
+    dispatch(removeItem(item));
+  }
+
 
   return (
     <div style={{ width: "100%", height: "400px" }}>
