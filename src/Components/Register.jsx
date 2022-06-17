@@ -48,7 +48,7 @@ const Register = () => {
 
   const validate = () => {
     const { password, confirmPassword } = input;
-    console.log(input);
+   
 
     Object.keys(input).forEach((key) => {
       if (input[key].trim() === "") {

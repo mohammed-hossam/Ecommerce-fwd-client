@@ -8,8 +8,12 @@ import { useState } from "react";
 
 const Item = (props) => {
   const { item } = props;
-  const [images, setImages] = useState(item.images.filter((img) => img!==null));
-  console.log(images);
+  const [images, setImages] = useState(
+    item.images.filter((img) => img !== null)
+  );
+
+  console.log('in first render : ',images);
+
   const dispatch = useDispatch();
   const isAdded = useSelector((state) =>
     state.cart.find((item) => item.id === props.item._id)
@@ -17,17 +21,17 @@ const Item = (props) => {
   const handleAdd = () => {
     item.qty = 1;
     dispatch(addItem(item));
-
   };
 
   const handleImageClick = (imageIndex) => {
-    const fImage = images[imageIndex]
-    const newImages = images[0]
-     
-    setImages(images.filter((img) => img !== fImage && img !== newImages))
-    console.log(images);
-    setImages((pr)=>[...pr,fImage,newImages]);
-    console.log(images);
+    const fImage = images[imageIndex];
+    const newImages = images[0];
+    console.log('print image detial :',imageIndex,fImage, newImages);
+    setImages(images.filter((img) => img !== fImage && img !== newImages));
+    console.log('image after delete targe : ',images);
+    setImages((pr) => [...pr, fImage, newImages]);
+    console.log('images after modfiy : ',images);
+  };
 
   return (
     <Stack margin={"10px"} direction={"row"}>
@@ -51,7 +55,6 @@ const Item = (props) => {
         </div>
         {isAdded ? (
           <QtyComponents item={item} />
-
         ) : (
           <div>
             <Button

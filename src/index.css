@@ -179,3 +179,9 @@ tbody button {
   border-radius: 5px;
   box-shadow: 0 0 4px 1px grey;
 }
+.site-title{
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}

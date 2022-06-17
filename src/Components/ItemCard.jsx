@@ -59,7 +59,7 @@ export default function ItemCard(props) {
 
       <CardActions disableSpacing sx={{ padding: 2 }}>
         {isAdded ? (
-          <QtyComponents id={item.id}/>
+          <QtyComponents item={item}/>
         ) : (
           <Button
             onClick={handleAdd}

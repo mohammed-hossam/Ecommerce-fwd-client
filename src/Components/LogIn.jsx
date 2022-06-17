@@ -24,16 +24,15 @@ const LogIn = () => {
   });
 
   const onSubmit = (e) => {
-    console.log("onSubmit");
+   
     e.preventDefault();
     const { name, password } = e.target;
-    console.log(isValid);
+   
      if (!isValid) return;
     dispatch(login({ username: name.value, password: password.value }));
   };
 
   const validate = () => {
-    console.log("validate");
     const { name, password } = input;
     if (name.trim() === "" && isVisited.name) {
       setErrorMessage((prevState) => ({
@@ -68,14 +67,12 @@ const LogIn = () => {
   };
 
   const onChange = (e) => {
-    console.log("onChange");
     const { id, value } = e.target;
     setInput((prevState) => ({ ...prevState, [id]: value }));
     setIsVisited((prevState) => ({ ...prevState, [id]: true }));
   };
 
   useEffect(() => {
-    console.log("useEffect");
     validate();
   }, [input]);
 

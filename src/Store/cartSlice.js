@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
-
 const cartSlice = createSlice({
     name: "cart",
     initialState: [],
@@ -28,7 +26,7 @@ const cartSlice = createSlice({
         updateQty: (state, action) => {
 
             const { id: _id, op } = action.payload;
-            console.log(_id, op);
+           
             const item = state.find(item => item.id === _id);
             item.qty = op === "+" ? item.qty + 1 : item.qty !== 1 ? item.qty - 1 : 1;
 
